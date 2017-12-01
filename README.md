@@ -1,2 +1,2 @@
 # Solidity
-Solidity coding
+This is my Solidity programming language work.
