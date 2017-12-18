@@ -1,0 +1,63 @@
+In this file let us see how to do basic things with Externally Owned Accounts using Command line
+We will work on the below mentioned tasks:
+ --> How to Create a new EOA?
+ --> How to list all the EOAs?
+ --> How to update(change the password) an EOA?
+ --> How to check the balance of an EOA?
+ --> How to check the balance of all the EOAs?
+
+ *****************************************************************************************************************
+
+ --> How to Create a new EOA?
+ A)  To create a new account using geth client we need to issue below command.
+
+           geth --datadir "/path/to/chaindata" account new
+
+    After issuing the above command it will prompt us to give a passphrase. We need to remember this passphrase to unlock this
+    account in order to make transactions from this account.
+
+  --> How to list all the EOAs?
+  A)  To list all the EOAs we need to issue the below command in the geth client
+
+          geth --datadir "/path/to/chaindata" account list
+
+      This command list all the accounts with their creation date , time and keyfile paths.
+
+    We can list the accounts by using geth Javascript console. To list the accounts using geth Javascript console we need to issue
+    the below Command
+                               eth.accounts()
+    eth.accounts() returns an array of all the accounts
+
+
+  --> How to update(change the password) an EOA?
+  A) To update an account, we need to use geth client. In geth client we need to issue the following Command
+        geth --datadir "/path/to/chaindata" account update [we need to provide account address here]
+
+      once we issue this command to the geth client, geth will prompt for a password we need to provide current password.
+      once we issue current password it asks for a new password and then the account will be updated successfully.
+
+  --> How to check Balance of an EOA?
+  A) To check balance of an EOA we need to issue the below mentioned command from the geth console.
+
+          eth.getBalance(account address)
+        we need to provide account address of the EOA for which we need to query the account balance.
+        This above function returns account balance in Wei which is the lowest denomination of ether. (1 ether = 1* 10**18 wei)
+        to get the balance in terms of ether we need to use
+
+          web3.fromWei(balance)
+
+  --> How to check Balance of all the EOAs?
+  A)  Normally Ethereum works in asynchronous mode. So we can write JS callbacks in Ethereum. So to query balance of all the Accounts
+      let us write a js function.
+
+      function CheckAllBalances(){
+        web3.getAccounts(function(err,accounts){
+          accounts.forEach(id){
+            web3.eth.getBalance(id,function(err,balance){
+              console.log("" + id + ":\t Balance :" web3.fromWei(balance,"ether") + "ether");
+            });
+          });
+        });
+      };
+
+      Once we call this function we will get the Balance of all the accounts in the denomination of ether.
