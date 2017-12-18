@@ -50,14 +50,14 @@ We will work on the below mentioned tasks:
   A)  Normally Ethereum works in asynchronous mode. So we can write JS callbacks in Ethereum. So to query balance of all the Accounts
       let us write a js function.
 
-      function CheckAllBalances(){
-        web3.eth.getAccounts(function(err,accounts){
-          accounts.forEach(function(id){
-            web3.eth.getBalance(id,function(err,balance){
-              console.log("" + id + ":\t Balance :" web3.fromWei(balance,"ether") + "ether");
-            });
-          });
-        });
-      };
+      function Check(){
+.. web3.eth.getAccounts(function(err,accounts){
+........ accounts.forEach(function(id){
+.............. web3.eth.getBalance(id,function(err,balance){
+.................... console.log("" + id + ":\t balance : " + web3.fromWei(balance,"ether")+ "ether");
+.................... });
+.............. });
+........ });
+.. };
 
       Once we call this function we will get the Balance of all the accounts in the denomination of ether.
