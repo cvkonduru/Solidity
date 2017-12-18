@@ -51,8 +51,8 @@ We will work on the below mentioned tasks:
       let us write a js function.
 
       function CheckAllBalances(){
-        web3.getAccounts(function(err,accounts){
-          accounts.forEach(id){
+        web3.eth.getAccounts(function(err,accounts){
+          accounts.forEach(function(id){
             web3.eth.getBalance(id,function(err,balance){
               console.log("" + id + ":\t Balance :" web3.fromWei(balance,"ether") + "ether");
             });
